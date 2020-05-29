@@ -109,4 +109,4 @@ deeplab/datasets/PQR/exp/train_on_trainval_set/train/*
 deeplab/datasets/PQR/exp/train_on_trainval_set/*
 deeplab/datasets/pqr_trained_model/*
 
-deeplab/datasets/trained_model.tar.gz
+# deeplab/datasets/trained_model.tar.gz
