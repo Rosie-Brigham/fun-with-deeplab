@@ -1,6 +1,6 @@
-# What have I done, and other stores
+# What have I done, and other stories
 
-This directory was mainly forked from tensoflows [models](https://github.com/tensorflow/models/tree/master/research/deeplab) directory. Specifically just the slim and deeplab directories, which have since been marginally tweaked.
+This directory was main large part forked from tensoflows [models](https://github.com/tensorflow/models/tree/master/research/deeplab) directory. Specifically just the slim and deeplab directories, which have since been marginally tweaked.
 The whole project was not forked due to the large number of models in the directory.
 
 
