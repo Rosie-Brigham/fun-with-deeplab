@@ -104,7 +104,7 @@ _DATASETS_INFORMATION = {
 # END MH
 ```
 
-These splits should match the number of files in your training and test sets that you made earlier. For example, if `train.txt` has 487 line numbers, `train` is 487. Same with `val` and `trainval`. If you are trying to segment more than just the background and foreground, `num_classes` should match the number of segmentations you are targeting. `ignore_label=255` just means you are ignoring anything in the segmentation that is white (used in some segmentations to create a clear space division between multiple segmentations).
+These splits should match the number of files in your training and test sets that you made earlier. For example, if `train.txt` has 650 line numbers, `train` is 650. Same with `val` and `trainval`. If you are trying to segment more than just the background and foreground, `num_classes` should match the number of segmentations you are targeting. `ignore_label=255` just means you are ignoring anything in the segmentation that is white (used in some segmentations to create a clear space division between multiple segmentations).
 
 
 
@@ -114,7 +114,7 @@ Note that `_DATASETS_INFORMATION` also contains a reference to this new dataset 
 
 
 
-You're finally ready to train!
+Now onto the training!
 
 
 
@@ -166,7 +166,7 @@ In order to make our training *much* faster we'll want to use a pre-trained mode
 
 **Edit your training script**
 
-First, edit your `train-pqr.sh` script (in the `models/research`) directory:
+First, edit the `train-pqr.sh` script (in the `models/research`) directory:
 
 ```bash
 # Set up the working environment.
@@ -194,7 +194,7 @@ python3 "${WORK_DIR}"/train.py \
 --atrous_rates=18 \
 --output_stride=16 \
 --decoder_output_stride=4 \
---train_crop_size=1000,667 \
+--train_crop_size=800,467 \
 --train_batch_size=4 \
 --training_number_of_steps="${NUM_ITERATIONS}" \
 --fine_tune_batch_norm=true \
@@ -207,10 +207,10 @@ Things you may want to change:
 
 * Make sure all paths are correct (starting from th `models/research` folder as `CURRENT_DIR`)
 * `NUM_ITERATIONS` - this is how long you want to train for. For me, on a Macbook Pro without GPU support, it took about 12 hours just to run 1000 iterations. You can expect GPU support to speed that up about 10X. At 1000 iterations, I still had a loss of about `.17`. I would recommend at least 3000 iterations. Some models can be as high as about 20000. You don't want to overtrain, but you're better off over-training than under-training. (For now, I have only done 1000, as this mac is rubbish and internet is not reliable to connect remotely)
-* `train_cropsize` - this is the size of the images you are training on. Your training will go **much** faster on smaller images. 1000x667 is quite large and I'd have done better to reduce that size a bit before training. Also, you should make sure these dimensions match in all three scripts: `train-pqr`,`eval-pqr`, and `vis-pqr.py`. #TODO - find out if 513 is important here....
+* `train_cropsize` - this is the size of the images you are training on. Your training will go **much** faster on smaller images. 1000x667 is quite large and I'd have done better to reduce that size a bit before training. Also, you should make sure these dimensions match in all three scripts: `train-pqr`,`eval-pqr`, and `vis-pqr.py`. 
 * The checkpoint files (`.ckpt`) are stored in your `PQR_FOLDER` and can be quite large (mine were 330 MB per file). However, periodically (in this case every 4 checkpoint files), the oldest checkpoint file will be deleted and the new one added - this should keep your harddrive from filling up too much. But in general, make sure you have plenty of harddrive space.
 
-
+*to check* - Here I have put the training crop size as 800,467. However, in most other places there seems to be a crop size of 513,513. Is this isgnificant, and is this why I am seeing errors?
 
 
 
@@ -236,10 +236,10 @@ Running `eval-pqr.sh` from the same directory will calculate the [`mean intersec
 
 
 In my case, I got a score of ~`.87` - which means essentially 87% of the pixels in my prediction mask were found in my target mask. The higher the number here, the better the mask.
-TODO - this is currently not working for me
+*to check* - this is currently not working for me
 
 
 **Visualization**
 
 To visualize the actual output of your masks, run `vis-pqr.sh` from the `models/research` directory. These will output to your visualization directory you specified (in our case, `models/research/deeplab/datasets/PQR/exp/train_on_trainval_set/vis/segmentation_results`).  You will see two separate images for each visualization: the "regular" image, and the "prediction" (or segmentation mask). 
-TODO - also currently not working
+*to check** - also currently not working
