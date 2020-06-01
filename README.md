@@ -7,12 +7,17 @@ This directory was main large part forked from tensoflows [models](https://githu
 The whole project was not forked due to the large number of models in the directory.
 
 
-### Notes on the dataset
-In order to train a dataset, 200 inidivual images were segmented (using labelbox) and then flipped, mirrored and flipped again to result in 800 images and segmentation ground truth masks. These would usually reside in the datasets/PQR/JPEGImages and datasets/PQR/SegmentationClassRaw directories, but have been ignored in this repo for size reasons.
+### Creating the dataset
 
-Similarly, the evaluation and training checkpoint files have been omitted for issues of size.
+**Saving the images on file**
 
-The trained model, created from the dataset and TRFrecords, can be found under deeplab/datasets/trained_model.tar.gz
+This model uses a dataset of around 200 (and rising) hand segmented images of wet grass, and were annotated using labelbox. This dataset can be downloaded using the following script. This script will download the original image and it's corresponsding segment, as well as flip, mirro and flip both images - creating a total dataset of 800+ images. 
+
+Run `$ python save-images.py` from the base directory.
+
+Once the images have successfully been downloaded (which may take a while over a shonky internet connection) you will need to convert the segmented images into RGB indexed colour. This makes processing a lot faster.
+
+Call `$ python colour-images.py` from base directory. This should save the indexed images into a new directory called SegmentationClassRaw
 
 
 **Generate the tfrecord folder**
