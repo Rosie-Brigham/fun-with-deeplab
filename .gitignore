@@ -101,6 +101,7 @@ ENV/
 # Pictures 'nd other stuff
 deeplab/datasets/PQR/JPEGImages/*
 deeplab/datasets/PQR/SegmentationClassRaw/*
+deeplab/datasets/PQR/SegmentationClass/*
 deeplab/datasets/deeplab_model.tar.gz
 
 # Eval & train stuff
