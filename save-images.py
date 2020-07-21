@@ -5,7 +5,7 @@ from PIL import ImageOps
 
 
 # This gets all the images from the file - saves them, and flips them
-with open('large-waterlogged-db.json') as data_file:    
+with open('new-images.json') as data_file:    
     data = json.load(data_file)
     i = 0
     for image in data:
@@ -17,7 +17,9 @@ with open('large-waterlogged-db.json') as data_file:
             
             # Save the image
             imageURL = image['Labeled Data']
-            img = urllib.request.urlretrieve(imageURL, f"deeplab/datasets/PQR/JPEGdeeplab/datasets/PQR/JPEGImages/{i}.jpeg")
+            # import code; code.interact(local=dict(globals(), **locals()))
+
+            img = urllib.request.urlretrieve(imageURL, f"deeplab/datasets/PQR/JPEGImages/{i}.jpeg")
             
             # then flip it...
             im = Image.open(f"deeplab/datasets/PQR/JPEGImages/{i}.jpeg")
@@ -31,6 +33,8 @@ with open('large-waterlogged-db.json') as data_file:
 
             # # then save the label
             segmented = image['Label']['objects'][0]['instanceURI']
+            # import code; code.interact(local=dict(globals(), **locals()))
+
             img = urllib.request.urlretrieve(segmented, f"deeplab/datasets/PQR/SegmentationClass/{i}.png")
             # then flip it...
             im = Image.open(f"deeplab/datasets/PQR/SegmentationClass/{i}.png")
