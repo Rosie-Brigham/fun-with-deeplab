@@ -6,6 +6,19 @@ The work closely follows [heaversm tutorial](https://github.com/heaversm/deeplab
 This directory was main large part forked from tensoflows [models](https://github.com/tensorflow/models/tree/master/research/deeplab) directory. Specifically just the slim and deeplab directories, which have since been marginally tweaked.
 The whole project was not forked due to the large number of models in the directory.
 
+### Install and test
+
+This repo requires the following:
+tensorflow==1.15 #(this will need to be changed, just as soon as I can get it working)
+pillow
+tqdm
+numpy
+
+Ensure that the slim directory is in your path by running this: (or putting it in your bash profile)
+```export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim```
+
+When you have done that, run the test to see if it works
+`$ python3 deeplab/model_test.py`
 
 ### Creating the dataset
 
@@ -47,7 +60,7 @@ tf.app.flags.DEFINE_string(
 'Path to save converted SSTable of TensorFlow examples.')
 ```
 
-In this instance, the `tfrecord` folder **should** exist. The script will not make it for you. Also note that at around Line 119 I have hardcoded the input format to be `.jpeg:
+Before you run this script, make sure you create the `tfrecord`. The script will not make it for you. Also note that at around Line 119 I have hardcoded the input format to be `.jpeg:
 
 ```python
 image_filename = os.path.join(
@@ -66,9 +79,6 @@ and the output images to be `.png`
       #END MH
 ```
 
-You should change those extensions to match the extensions of your own images if they differ.
-
-
 
 Now you can run the file (from the `datasets` directory:
 
@@ -83,8 +93,7 @@ Once this is done, you will have a `tfrecord` directory filled with `.tfrecord` 
 **Add the information about your dataset segmentation** (TODO: check to make sure we still need this step...)
 
 
-
-You'll need to provide tensorflow the list of how your dataset was divided up into training and test images. 
+I then provided tensorflow with the list of how the dataset was divided up into training and test images. 
 
 In `deprecated/segmentation_dataset.py` , look for the following (~Line 114):
 
@@ -109,7 +118,7 @@ _DATASETS_INFORMATION = {
 # END MH
 ```
 
-These splits should match the number of files in your training and test sets that you made earlier. For example, if `train.txt` has 650 line numbers, `train` is 650. Same with `val` and `trainval`. If you are trying to segment more than just the background and foreground, `num_classes` should match the number of segmentations you are targeting. `ignore_label=255` just means you are ignoring anything in the segmentation that is white (used in some segmentations to create a clear space division between multiple segmentations).
+These splits should match the number of files in the training and test sets that made earlier. For example, if `train.txt` has 650 line numbers, `train` is 650. Same with `val` and `trainval`. If you are trying to segment more than just the background and foreground, `num_classes` should match the number of segmentations you are targeting. `ignore_label=255` just means you are ignoring anything in the segmentation that is white (used in some segmentations to create a clear space division between multiple segmentations).
 
 
 
@@ -160,11 +169,6 @@ convert_rgb_to_index.py //turns rgb images into their segmentation indices
 **Download the Pascal Training Set**
 
 In order to make our training *much* faster we'll want to use a pre-trained model, in this case pascal VOC2012. [You can download it here](http://download.tensorflow.org/models/deeplabv3_pascal_train_aug_2018_01_04.tar.gz). Extract it into the `PQR/exp/train_on_tranval_set/init_models` directory (should be named `deeplabv3_pascal_train_aug`).
-
-
-
-
-
 
 
 
