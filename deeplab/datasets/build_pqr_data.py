@@ -69,7 +69,7 @@ tf.app.flags.DEFINE_string('image_folder',
 
 tf.app.flags.DEFINE_string(
     'semantic_segmentation_folder',
-    './PQR/SegmentationClassRaw',
+    './PQR/SegmentationClass',
     'Folder containing semantic segmentation annotations.')
 
 tf.app.flags.DEFINE_string(

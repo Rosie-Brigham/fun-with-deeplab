@@ -47,13 +47,13 @@ tf.app.flags.DEFINE_string(
 'Path to save converted SSTable of TensorFlow examples.')
 ```
 
-In this instance, the `tfrecord` folder **should** exist. The script will not make it for you. Also note that at around Line 119 I have hardcoded the input format to be `.jpg:
+In this instance, the `tfrecord` folder **should** exist. The script will not make it for you. Also note that at around Line 119 I have hardcoded the input format to be `.jpeg:
 
 ```python
 image_filename = os.path.join(
 #MH:
 #FLAGS.image_folder, filenames[i] + '.' + FLAGS.image_format)
-FLAGS.image_folder, filenames[i] + '.jpg')
+FLAGS.image_folder, filenames[i] + '.jpeg')
 #END MH
 ```
 
