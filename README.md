@@ -26,11 +26,11 @@ When you have done that, run the test to see if it works
 
 This model uses a dataset of around 200 (and rising) hand segmented images of wet grass, and were annotated using labelbox. This dataset can be downloaded using the following script. This script will download the original image and it's corresponsding segment, as well as flip, mirro and flip both images - creating a total dataset of 800+ images. 
 
-Run `$ python save-images.py` from the base directory.
+Run `$ python3 save-images.py` from the base directory.
 
 Once the images have successfully been downloaded (which may take a while over a shonky internet connection) you will need to convert the segmented images into RGB indexed colour. This makes processing a lot faster.
 
-Call `$ python colour-images.py` from base directory. This should save the indexed images into a new directory called SegmentationClassRaw
+Call `$ python3 colour-images.py` from base directory. This should save the indexed images into a new directory called SegmentationClassRaw
 
 
 **Generate the tfrecord folder**
