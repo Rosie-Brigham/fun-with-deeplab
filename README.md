@@ -15,9 +15,15 @@ tqdm
 numpy
 
 Ensure that the slim directory is in your path by running this: (or putting it in your bash profile)
+
 ```export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim```
 
+For me I had to hard-code my current working directory
+
+```export PYTHONPATH=$PYTHONPATH:~/Code/uni/fun-with-deeplab:~/Code/uni/fun-with-deeplab/slim```
+
 When you have done that, run the test to see if it works
+
 `$ python3 deeplab/model_test.py`
 
 ### Creating the dataset
@@ -60,7 +66,7 @@ tf.app.flags.DEFINE_string(
 'Path to save converted SSTable of TensorFlow examples.')
 ```
 
-Before you run this script, make sure you create the `tfrecord`. The script will not make it for you. Also note that at around Line 119 I have hardcoded the input format to be `.jpeg:
+Before you run this script, make sure you create the `tfrecord`. The script will not make it for you. Also note that at around Line 119 I have hardcoded the input format to be `.jpeg`: inline with those downloaded from labelbox
 
 ```python
 image_filename = os.path.join(
@@ -144,12 +150,12 @@ Make sure your folder structure from `/datasets` looks similar to this, if you f
 ```
 + PQR
   + exp //contains exported files
-  + train_on_trainval_set
-  + eval //contains results of training evaluation
-  + init_models //contains the deeplab pascal training set, which you need to download
-  + train //contains training ckpt files
-  + vis
-    + segmentation_results //contains the generated segmentation masks
+    + train_on_trainval_set
+      + eval //contains results of training evaluation
+        + init_models //contains the deeplab pascal training set, which you need to download
+        + train //contains training ckpt files
+        + vis
+          + segmentation_results //contains the generated segmentation masks
   + Imagesets
     train.txt
     trainval.txt
@@ -157,11 +163,12 @@ Make sure your folder structure from `/datasets` looks similar to this, if you f
   + logs
   + tfrecord //holds your converted dataset
 buid_pqr_data.py //creates your tfrecord files
-convert_rgb_to_index.py //turns rgb images into their segmentation indices
 
 ../../train-pqr.sh //holds the training script
 ../../eval-pqr.sh //holds the eval script
 ../../vis-pqr.sh //holds the visualization script
+../../save-images.py
+../../color-images.py
 ```
 
 
