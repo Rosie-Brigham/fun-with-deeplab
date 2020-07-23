@@ -24,7 +24,7 @@ def convert_from_color_segmentation(arr_3d):
 # label_dir = './PQR/data/SegmentationClass/'
 # new_label_dir = './PQR/data/SegmentationClassRaw/'
 label_dir = 'deeplab/datasets/PQR/SegmentationClass/'
-new_label_dir = 'deeplab/datasets/PQR/SegmentationClass/'
+new_label_dir = 'deeplab/datasets/PQR/SegmentationClassRaw/'
 
 if not os.path.isdir(new_label_dir):
 	print("creating folder: ",new_label_dir)

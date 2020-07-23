@@ -18,7 +18,7 @@ python "${WORK_DIR}"/vis.py \
 --atrous_rates=18 \
 --output_stride=16 \
 --decoder_output_stride=4 \
---vis_crop_size=800,467 \
+--vis_crop_size=500,500 \
 --checkpoint_dir="${TRAIN_LOGDIR}" \
 --vis_logdir="${VIS_LOGDIR}" \
 --dataset_dir="${DATASET}" \
