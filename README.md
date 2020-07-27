@@ -37,7 +37,7 @@ Run `$ python3 save-images.py` from the base directory.
 Once the images have successfully been downloaded (which may take a while over a shonky internet connection) you will need to convert the segmented images into RGB indexed colour. This makes processing a lot faster.
 
 Call `$ python3 colour-images.py` from base directory. This should save the indexed images into a new directory called SegmentationClassRaw
-
+(Warning - this may be completly rubbish and I need to TODO check to what extent it's legit.)
 
 **Generate the tfrecord folder**
 
@@ -182,7 +182,7 @@ In order to make our training *much* faster we'll want to use a pre-trained mode
 
 **Edit your training script**
 
-First, edit the `train-pqr.sh` script (in the `models/research`) directory:
+First, edit the `train-pqr.sh` script (in the base) directory:
 
 ```bash
 # Set up the working environment.
@@ -221,7 +221,7 @@ python3 "${WORK_DIR}"/train.py \
 
 Things you may want to change:
 
-* Make sure all paths are correct (starting from th `models/research` folder as `CURRENT_DIR`)
+* Make sure all paths are correct (starting from th base folder as `CURRENT_DIR`)
 * `NUM_ITERATIONS` - this is how long you want to train for. For me, on a Macbook Pro without GPU support, it took about 12 hours just to run 1000 iterations. You can expect GPU support to speed that up about 10X. At 1000 iterations, I still had a loss of about `.17`. I would recommend at least 3000 iterations. Some models can be as high as about 20000. You don't want to overtrain, but you're better off over-training than under-training. (For now, I have only done 1000, as this mac is rubbish and internet is not reliable to connect remotely)
 * `train_cropsize` - this is the size of the images you are training on. Your training will go **much** faster on smaller images. 1000x667 is quite large and I'd have done better to reduce that size a bit before training. Also, you should make sure these dimensions match in all three scripts: `train-pqr`,`eval-pqr`, and `vis-pqr.py`. 
 * The checkpoint files (`.ckpt`) are stored in your `PQR_FOLDER` and can be quite large (mine were 330 MB per file). However, periodically (in this case every 4 checkpoint files), the oldest checkpoint file will be deleted and the new one added - this should keep your harddrive from filling up too much. But in general, make sure you have plenty of harddrive space.
