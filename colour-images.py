@@ -1,5 +1,3 @@
-# import code; code.interact(local=dict(globals(), **locals()))
-
 import tensorflow as tf
 from PIL import Image
 from tqdm import tqdm
@@ -8,9 +6,9 @@ import numpy as np
 import os, shutil
 
 # palette (color map) describes the (R, G, B): Label pair
-palette = {(0,   0,   0) : 0 ,
-         (24, 191, 132) : 1
-         }
+palette = {(0, 0, 0) : 0 ,
+            (255, 255, 255) : 1 #water
+          }
 
 def convert_from_color_segmentation(arr_3d):
     arr_2d = np.zeros((arr_3d.shape[0], arr_3d.shape[1]), dtype=np.uint8)
@@ -21,8 +19,6 @@ def convert_from_color_segmentation(arr_3d):
     return arr_2d
 
 
-# label_dir = './PQR/data/SegmentationClass/'
-# new_label_dir = './PQR/data/SegmentationClassRaw/'
 label_dir = 'deeplab/datasets/PQR/SegmentationClass/'
 new_label_dir = 'deeplab/datasets/PQR/SegmentationClassRaw/'
 
@@ -34,9 +30,11 @@ else:
 
 
 label_files = os.listdir(label_dir)
+label_files.remove('.DS_Store')
 
 for l_f in tqdm(label_files):
     arr = np.array(Image.open(label_dir + l_f))
+    # import code; code.interact(local=dict(globals(), **locals()))
     arr = arr[:,:,0:3]
     arr_2d = convert_from_color_segmentation(arr)
     Image.fromarray(arr_2d).save(new_label_dir + l_f)

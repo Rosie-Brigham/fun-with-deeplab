@@ -6,6 +6,8 @@ PQR_FOLDER="PQR"
 EXP_FOLDER="exp/train_on_trainval_set"
 INIT_FOLDER="${WORK_DIR}/${DATASET_DIR}/${PQR_FOLDER}/${EXP_FOLDER}/init_models"
 TRAIN_LOGDIR="${WORK_DIR}/${DATASET_DIR}/${PQR_FOLDER}/${EXP_FOLDER}/train"
+# TRAIN_LOGDIR="/Users/student/Code/uni/fun-with-deeplab/deeplab/datasets/PQR/exp/train_on_trainval_set/init_models"
+
 VIS_LOGDIR="${WORK_DIR}/${DATASET_DIR}/${PQR_FOLDER}/${EXP_FOLDER}/vis"
 DATASET="${WORK_DIR}/${DATASET_DIR}/${PQR_FOLDER}/tfrecord"
 
@@ -18,7 +20,7 @@ python "${WORK_DIR}"/vis.py \
 --atrous_rates=18 \
 --output_stride=16 \
 --decoder_output_stride=4 \
---vis_crop_size=500,500 \
+--vis_crop_size=513,513 \
 --checkpoint_dir="${TRAIN_LOGDIR}" \
 --vis_logdir="${VIS_LOGDIR}" \
 --dataset_dir="${DATASET}" \

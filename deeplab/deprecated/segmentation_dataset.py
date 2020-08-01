@@ -112,13 +112,13 @@ _ADE20K_INFORMATION = DatasetDescriptor(
 
 # MH
 _PQR_INFORMATION = DatasetDescriptor(
-splits_to_sizes={
-  'train': 650,
-  'val': 150,
-  'trainval': 800,
-},
-num_classes=2,
-ignore_label=255,
+    splits_to_sizes={
+    'train': 650,
+    'val': 150,
+    'trainval': 800,
+    },
+    num_classes=2,
+    ignore_label=250,
 )
 
 _DATASETS_INFORMATION = {
