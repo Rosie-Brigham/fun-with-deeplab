@@ -31,7 +31,7 @@ else:
 
 label_files = os.listdir(label_dir)
 # needed for local, but not colab apparently
-if label_files.containes('.DS_Store'):
+if '.DS_Store' in label_files:
     label_files.remove('.DS_Store')
 
 for l_f in tqdm(label_files):
