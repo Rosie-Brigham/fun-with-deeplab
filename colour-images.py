@@ -30,7 +30,9 @@ else:
 
 
 label_files = os.listdir(label_dir)
-label_files.remove('.DS_Store')
+# needed for local, but not colab apparently
+if label_files.containes('.DS_Store'):
+    label_files.remove('.DS_Store')
 
 for l_f in tqdm(label_files):
     arr = np.array(Image.open(label_dir + l_f))
