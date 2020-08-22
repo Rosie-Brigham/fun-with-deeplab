@@ -13,7 +13,7 @@ DATASET="${WORK_DIR}/${DATASET_DIR}/${PQR_FOLDER}/tfrecord"
 mkdir -p "${WORK_DIR}/${DATASET_DIR}/${PQR_FOLDER}/exp"
 mkdir -p "${TRAIN_LOGDIR}"
 
-NUM_ITERATIONS=1010
+NUM_ITERATIONS=200
 python "${WORK_DIR}"/train.py \
   --logtostderr \
   --train_split="train" \
