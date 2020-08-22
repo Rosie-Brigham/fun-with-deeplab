@@ -205,11 +205,11 @@ def main(unused_argv):
       contrib_quantize.create_eval_graph()
 
     contrib_tfprof.model_analyzer.print_model_analysis(
-        tf.get_default_graph(),
+        tf.Graph(),
         tfprof_options=contrib_tfprof.model_analyzer
         .TRAINABLE_VARS_PARAMS_STAT_OPTIONS)
     contrib_tfprof.model_analyzer.print_model_analysis(
-        tf.get_default_graph(),
+        tf.Graph(),
         tfprof_options=contrib_tfprof.model_analyzer.FLOAT_OPS_OPTIONS)
     contrib_training.evaluate_repeatedly(
         checkpoint_dir=FLAGS.checkpoint_dir,
