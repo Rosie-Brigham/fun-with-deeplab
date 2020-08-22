@@ -117,8 +117,8 @@ _PQR_INFORMATION = DatasetDescriptor(
     'val': 150,
     'trainval': 800,
     },
-    num_classes=2,
-    ignore_label=250,
+    num_classes=1,
+    ignore_label=0,
 )
 
 _DATASETS_INFORMATION = {
