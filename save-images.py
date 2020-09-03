@@ -20,7 +20,8 @@ with open('new-images.json') as data_file:
             # import code; code.interact(local=dict(globals(), **locals()))
 
             img = urllib.request.urlretrieve(imageURL, f"deeplab/datasets/PQR/JPEGImages/{i}.jpeg")
-            img.convert("RGB").save(f"deeplab/datasets/PQR/JPEGImages/{i}.jpeg")
+            # make sure its rbg, not rgba
+            Image.open(f"deeplab/datasets/PQR/JPEGImages/{i}.jpeg").convert("RGB").save(f"deeplab/datasets/PQR/JPEGImages/{i}.jpeg")
             
             # then flip it...
             im = Image.open(f"deeplab/datasets/PQR/JPEGImages/{i}.jpeg")            
@@ -39,7 +40,8 @@ with open('new-images.json') as data_file:
             # import code; code.interact(local=dict(globals(), **locals()))
 
             img = urllib.request.urlretrieve(segmented, f"deeplab/datasets/PQR/SegmentationClass/{i}.png")
-            img.convert("RGB").save(f"deeplab/datasets/PQR/SegmentationClass/{i}.png")
+            # make sure it's rgb, not rgba
+            Image.open(f"deeplab/datasets/PQR/SegmentationClass/{i}.png").convert("RGB").save(f"deeplab/datasets/PQR/SegmentationClass/{i}.png")
             # then flip it...
             im = Image.open(f"deeplab/datasets/PQR/SegmentationClass/{i}.png")
             im = ImageOps.mirror(im)
