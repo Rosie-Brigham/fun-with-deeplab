@@ -23,12 +23,16 @@ with open('new-images.json') as data_file:
             
             # then flip it...
             im = Image.open(f"deeplab/datasets/PQR/JPEGImages/{i}.jpeg")
+            im = im.convert("RGB").save(f"deeplab/datasets/PQR/JPEGImages/{i}.jpeg")
+            
             im = ImageOps.mirror(im)
             im = im.convert("RGB")
             im.save(f"deeplab/datasets/PQR/JPEGImages/{i}m.jpeg")
             im = ImageOps.flip(im)
+            im = im.convert("RGB")
             im.save(f"deeplab/datasets/PQR/JPEGImages/{i}f.jpeg")
             im = ImageOps.mirror(im)
+            im = im.convert("RGB")
             im.save(f"deeplab/datasets/PQR/JPEGImages/{i}fm.jpeg")
 
             # # then save the label
@@ -38,6 +42,7 @@ with open('new-images.json') as data_file:
             img = urllib.request.urlretrieve(segmented, f"deeplab/datasets/PQR/SegmentationClass/{i}.png")
             # then flip it...
             im = Image.open(f"deeplab/datasets/PQR/SegmentationClass/{i}.png")
+            im = im.convert("RGB").save(f"deeplab/datasets/PQR/SegmentationClass/{i}.png")
             im = ImageOps.mirror(im)
             im.save(f"deeplab/datasets/PQR/SegmentationClass/{i}m.png")
             im = ImageOps.flip(im)
